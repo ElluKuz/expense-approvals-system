@@ -13,8 +13,9 @@ logger = logging.getLogger('zapier_webhook')
 def handle_expense_webhook():
     data = request.get_json(silent=True) or request.form.to_dict()
     logger.info(f"Received expense webhook: {data}")
-    raw_data = request.get_data(as_text=True)
-    logger.info(f"Raw incoming data: {raw_data}")
+    safe = dict(data)
+    if 'secret_key' in safe: safe['secret_key'] = '***'
+    logger.info(f"Incoming data (redacted): {safe}")
     
     # Проверка секретного ключа
     if data.get("secret_key") != EXPENSE_WEBHOOK_SECRET:

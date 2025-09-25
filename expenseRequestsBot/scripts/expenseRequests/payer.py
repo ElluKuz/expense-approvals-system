@@ -21,8 +21,9 @@ from expenseRequests.databasehelper import get_db_connection
 logger = logging.getLogger('bot')
 
 # >>> Добавляем две константы для TRON:
-API_KEY = 'REMOVED_TRON_API_KEY'
-CONTRACT_ADDRESS = 'TYKC3tKUjLsNDPXM52QcLcLVxN94qbMRfp'
+import os
+API_KEY = os.getenv('TRON_API_KEY', 'CHANGE_ME')
+CONTRACT_ADDRESS = os.getenv('TRON_CONTRACT_USDT', 'CHANGE_ME')  # адрес контракта — не секрет, но тоже в ENV
 
 # Состояния для ConversationHandler
 REQUEST_NAVIGATION, REASON, CORRECTION_REASON = range(3)
@@ -52,7 +53,8 @@ def clean_amount(amount):
 
 # Функция отправки webhook в Zapier
 def send_webhook(request_data):
-    webhook_url = "os.getenv('EXPENSE_STATUS_WEBHOOK','https://example.com/status')"
+    webhook_url = os.getenv('EXPENSE_STATUS_WEBHOOK', 'https://example.com/status')
+
     payload = {
         "requestId": request_data[0],
         "status": "Paid by Payer",
@@ -374,8 +376,8 @@ async def decision_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             requesterName             = request_data[10]
             requesterTelegramNickname = request_data[9]
             if description.strip().startswith("🏗️ Project name:") or description.strip().startswith("ВОЗВРАТ ДЕПОЗИТА"):
-                financier_bot_token = "REMOVED_TG_TOKEN"
-                financier_chat_id = "-1002316341562"  # Замените на реальный ID группы "Loyo finance"
+                financier_bot_token = os.getenv('FINANCIER_BOT_TOKEN', '')
+                financier_chat_id = "-00000"  # Замените на реальный ID группы "Loyo finance"
                 finance_notification = (
                     f"✅ <b>Оплачено:</b> заявка {requestId}\n"
                     f"📅 <b>Дата оплаты:</b> {decision_date}\n"

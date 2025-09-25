@@ -16,39 +16,28 @@ from expenseRequests.databasehelper import get_db_connection
 
 
 # === Конфиги ===
-ZAPIER_UPLOAD_HOOK = os.getenv('ZAPIER_UPLOAD_HOOK','https://example.com/hook')
+import os
 
-# Remote MySQL via SSH-tunnel
+ZAPIER_UPLOAD_HOOK = os.getenv('ZAPIER_UPLOAD_HOOK', 'https://example.com/hook')
+
 REMOTE_DB = {
-    'host': os.getenv('REMOTE_DB_HOST','127.0.0.1')
-    'user': os.getenv('REMOTE_DB_USER','user')
-    'database': os.getenv('REMOTE_DB_NAME','db')
+    'host': os.getenv('REMOTE_DB_HOST', '127.0.0.1'),
+    'user': os.getenv('REMOTE_DB_USER', 'user'),
+    'database': os.getenv('REMOTE_DB_NAME', 'db'),
+    'password': os.getenv('REMOTE_DB_PASSWORD', ''),  # если нужно
+    'port': int(os.getenv('REMOTE_DB_PORT', '3306')),
 }
 
-# SFTP
 REMOTE_SSH = {
-    'hostname': os.getenv('SFTP_HOST','127.0.0.1')
-    'username': os.getenv('SFTP_USER','user')
-    'key_filename': os.getenv('SFTP_KEY','/run/creds/id_rsa')
+    'hostname': os.getenv('SFTP_HOST', '127.0.0.1'),
+    'username': os.getenv('SFTP_USER', 'user'),
+    'key_filename': os.getenv('SFTP_KEY', '/run/creds/id_rsa'),
 }
-REMOTE_FILES_ROOT = os.getenv('REMOTE_FILES_ROOT','/tmp/files')
+REMOTE_FILES_ROOT = os.getenv('REMOTE_FILES_ROOT', '/tmp/files')
 
-# TRON constants
-API_KEY = os.getenv('TRON_API_KEY','TEST_KEY')
-CONTRACT_ADDRESS = os.getenv('TRON_CONTRACT_USDT','Txxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-WALLET_ADDRESSES = [
-    "TYKC3tKUjLsNDPXM52QcLcLVxN94qbMRfp",
-    'TCAw8eziUKdnknqHW68uL7KmrNak88DjFm',
-    'TF49f7fTndSudRHJai2ySESreh1vHxeF2',
-    'TPEYGfYK3QPrsixBTPhzV55Xr2E3gqyyM8',
-    'TTok8v6VJq2MyQYjxd39NADyFKsa1vRM4M',
-    'TNEkoUMu6HP8waKpr5Ay8T33AmPer8Kpkf',  # <-- наш интересующий кошелёк
-    'TVBqKKwADV5FgXUr1jit8dTxZb7qRZc7cb'
-]
-
-# Zapier webhook
-WEBHOOK_URL = os.getenv('EXPENSE_STATUS_WEBHOOK','https://example.com/status')
-
+API_KEY = os.getenv('TRON_API_KEY', 'CHANGE_ME')
+CONTRACT_ADDRESS = os.getenv('TRON_CONTRACT_USDT', 'CHANGE_ME')
+WEBHOOK_URL = os.getenv('EXPENSE_STATUS_WEBHOOK', 'https://example.com/status')
 # === Утилиты синхронные ===
 
 def send_webhook(request_data):
