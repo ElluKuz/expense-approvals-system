@@ -1,1 +1,1 @@
-cat /home/loyo/projects/loyoTelegramBot/systemPrompt.md > /home/loyo/projects/loyoTelegramBot/overview.md && tree /home/loyo/projects/loyoTelegramBot >> /home/loyo/projects/loyoTelegramBot/overview.md && find /home/loyo/projects/loyoTelegramBot -type f -name '*.py' -exec sh -c 'echo -e "\n## $1\n\nPath: $1\n" >> /home/loyo/projects/loyoTelegramBot/overview.md && cat "$1" >> /home/loyo/projects/loyoTelegramBot/overview.md' _ {} \;
+
