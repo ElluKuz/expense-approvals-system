@@ -9,7 +9,7 @@ It is designed for organizations with distributed teams and complex financial op
 - Provides management and finance with **real-time visibility** into departmental expenditures  
 - Reduces approval delays through structured, transparent workflows  
 - Scales seamlessly across multiple departments and organizational units
-- 
+  
 ---
 
 ## 🔑 Key Capabilities
@@ -82,20 +82,69 @@ It is designed for organizations with distributed teams and complex financial op
 
 ---
 
-This architecture provides **one consistent workflow** for all financial request types, supports iterative corrections, and integrates seamlessly with corporate reporting tools.  
----
 
 ##📂 Repository Structure
+This architecture provides **one consistent workflow** for all financial request types, supports iterative corrections, and integrates seamlessly with corporate reporting tools.  
+
 This repository contains a sanitized demo version.All production credentials, database records, and sensitive integrations have been removed or replaced with placeholders.
 
-expense-approvals-system/
-├── app/                # database schema, shared modules
-│   └── schema.sql
-├── expenseRequestsBot/ # core workflow logic
-│   └── scripts/expenseRequests/
-├── scripts/            # utilities, db seeding, dev tools
-├── .env.example        # environment variable template
-├── requirements.txt    # dependencies
-├── Dockerfile          # containerized setup (optional)
-├── docker-compose.yml  # compose file for quick start
-└── README.md
+---
+
+## 📈 Example Use Case
+
+Below is a typical lifecycle of a **Commission Request** as processed by the system.  
+The same workflow applies to **Expense Requests** and **Deposit Returns**.
+
+### Step 1 — Request Submission
+A sales manager initiates a **commission payout request**, providing:
+- Project name: *Melasti Dream Residence*  
+- Client name: *John Doe*  
+- Unit number: *A-203*  
+- Sale price: *$120,000*  
+- Agency: *ABC Realty*  
+- Commission: *5% = $6,000*  
+- Agent: *Jane Smith*  
+- Supporting documents: contract scans, proof of payment  
+
+### Step 2 — Department Head Review
+The Head of Sales reviews the request:
+- ✅ Approves project and client details  
+- Adds internal notes  
+- Forwards the request to the Finance Department  
+
+
+### Step 3 — Finance Leadership (CFO) Review
+The CFO evaluates the request:
+- Detects a mismatch in sale price formatting  
+- 📝 Sends the request back for correction with a comment:  
+  *“Please verify the unit sale price and re-submit with the final contract amount.”*  
+
+
+### Step 4 — Correction & Resubmission
+The sales manager edits the request:
+- Updates sale price to *$125,000*  
+- Commission auto-calculates to *$6,250*  
+- Resubmits into the approval workflow  
+
+
+### Step 5 — CFO Approval
+The CFO re-checks the corrected request:  
+- ✅ Approves with updated figures  
+- Forwards to the Payer for execution  
+
+
+### Step 6 — Payer Execution
+The finance officer (Payer):  
+- Confirms the commission transfer of *$6,250*  
+- Marks the request as **Paid**  
+- Uploads payment confirmation  
+
+
+### Step 7 — Reporting & Integration
+The system automatically:  
+- Exports a structured document (Google Docs) with request details for the company archive  
+- Updates the **Google Sheets financial register** with the new transaction  
+- Includes the commission payout in the **monthly CSV report** for the Sales Department  
+
+###  ✅ Final Outcome:  
+The request lifecycle is **fully documented**, **transparent**, and **synchronized** with corporate reporting tools, while supporting iterative corrections and audit compliance.  
