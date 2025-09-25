@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.log
+
+# Secrets & creds
+.env
+*.env
+credentials.json
+service_account.json
+*.pem
+*.key
+*.p12
+
+# Local data
+data/
+*.db
+attachments/
+logs/
+
+# Env/IDE
+venv/
+.envrc
+.vscode/
+.idea/
