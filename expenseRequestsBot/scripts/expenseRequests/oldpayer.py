@@ -1,3 +1,4 @@
+import os
 import logging
 import datetime
 import sqlite3
@@ -53,7 +54,7 @@ def clean_amount(amount):
 
 # Функция отправки webhook в Zapier
 def send_webhook(request_data):
-    webhook_url = "https://hooks.zapier.com/hooks/catch/19162894/2se4vf9/"
+    webhook_url = "os.getenv('EXPENSE_STATUS_WEBHOOK','https://example.com/status')"
     payload = {
         "requestId": request_data[0],
         "status": "Paid by Payer",
